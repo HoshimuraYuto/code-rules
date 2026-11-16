@@ -224,6 +224,20 @@ const FIXTURES: Readonly<Record<string, string>> = {
   ),
 };
 
+function describeTitle(title: string): string {
+  return lines(
+    'import { expect, test, describe } from "vitest";',
+    "",
+    'import { double } from "./double.mts";',
+    "",
+    `describe(${title}, () => {`,
+    '  test("doubles", () => {',
+    "    expect(double(2)).toBe(4);",
+    "  });",
+    "});",
+  );
+}
+
 // Cases the wrappers and rule options exist for; none may trigger the named rule.
 const PASSING: readonly {
   name: string;
@@ -275,6 +289,12 @@ const PASSING: readonly {
     ),
   },
   {
+    name: "an imported function as a describe title",
+    rule: "vitest/valid-title",
+    file: "src/function-title.test.mts",
+    source: describeTitle("double"),
+  },
+  {
     name: "a comment that names a directive mid-sentence",
     rule: "eslint/no-warning-comments",
     file: "src/directive-prose.mts",
@@ -292,6 +312,18 @@ const FAILING: readonly {
   file: string;
   source: string;
 }[] = [
+  {
+    name: "an empty describe title",
+    rule: "vitest/valid-title",
+    file: "src/empty-title.test.mts",
+    source: describeTitle('""'),
+  },
+  {
+    name: "an imported function's name as a string describe title",
+    rule: "vitest/prefer-describe-function-title",
+    file: "src/string-title.test.mts",
+    source: describeTitle('"double"'),
+  },
   {
     name: "commented-out code after a triple-slash directive",
     rule: "no-commented-code/no-commented-code",
@@ -368,6 +400,14 @@ function makeService(): string {
   mkdirSync(join(dir, "e2e"));
   writeFileSync(join(dir, "oxlint.config.mts"), OXLINT_CONFIG);
   writeFileSync(join(dir, "tsconfig.json"), TSCONFIG);
+  writeFileSync(
+    join(dir, "src/double.mts"),
+    lines(
+      "export function double(value: number): number {",
+      "  return value * 2;",
+      "}",
+    ),
+  );
   for (const [rule, source] of Object.entries(FIXTURES)) {
     writeFileSync(join(dir, fileOf(rule)), source);
   }

@@ -72,6 +72,8 @@ export const consistencyRules: DummyRuleMap = {
   "vitest/prefer-called-with": "error",
   "vitest/prefer-comparison-matcher": "error",
   "vitest/prefer-describe-function-title": "error",
+  /** The rule above asks for the function itself as the title. */
+  "vitest/valid-title": ["error", { allowArguments: true }],
   "vitest/prefer-expect-resolves": "error",
   "vitest/prefer-expect-type-of": "error",
   "vitest/prefer-import-in-mock": "error",
