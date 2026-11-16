@@ -40,6 +40,8 @@ jobs:
       - uses: pnpm/setup@fa36a5ef7dcdefc3a7cb25655c122e00cf6e636e # v3.1.2
         with:
           runtime: node@26
+      # pnpm/setup's Node ships without npm, so the runner's npm 10 would publish; it lacks OIDC.
+      - run: npm install --global npm@11.21.2
       - run: pnpm exec semantic-release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
