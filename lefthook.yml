@@ -1,0 +1,9 @@
+pre-commit:
+  jobs:
+    - name: check
+      run: pnpm check
+
+commit-msg:
+  jobs:
+    - name: commitlint
+      run: pnpm exec commitlint --edit {1}

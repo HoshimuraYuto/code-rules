@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig/base.json",
+  "compilerOptions": {
+    "module": "nodenext",
+    "target": "es2025",
+    "lib": ["es2025"],
+    "types": ["node"],
+
+    "noEmit": true,
+    "allowImportingTsExtensions": true,
+    "rewriteRelativeImportExtensions": true,
+    "allowJs": true,
+    "checkJs": true
+  },
+  "include": ["src", "test", "*.mts", "*.ts", ".secretlintrc.cjs"]
+}

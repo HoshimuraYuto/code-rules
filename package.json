@@ -1,0 +1,100 @@
+{
+  "name": "@hoshimurayuto/code-rules",
+  "version": "0.0.0-development",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HoshimuraYuto/code-rules.git"
+  },
+  "files": [
+    "dist",
+    "tsconfig"
+  ],
+  "type": "module",
+  "exports": {
+    "./oxlint": {
+      "types": "./dist/oxlint/config.d.mts",
+      "default": "./dist/oxlint/config.mjs"
+    },
+    "./oxfmt": {
+      "types": "./dist/oxfmt/config.d.mts",
+      "default": "./dist/oxfmt/config.mjs"
+    },
+    "./stylelint": {
+      "types": "./dist/stylelint/config.d.mts",
+      "default": "./dist/stylelint/config.mjs"
+    },
+    "./stylelint/astro": {
+      "types": "./dist/stylelint/astro.d.mts",
+      "default": "./dist/stylelint/astro.mjs"
+    },
+    "./tsconfig": "./tsconfig/base.json"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "scripts": {
+    "build": "tsc -p tsconfig.build.json",
+    "check": "tsc && pnpm build && secretlint \"**/*\" && vitest run && oxfmt --check . && oxlint --type-aware --deny-warnings . && knip",
+    "fix": "oxfmt . && oxlint --fix",
+    "prepack": "pnpm run build",
+    "prepare": "lefthook install"
+  },
+  "dependencies": {
+    "eslint-plugin-antfu": "3.3.1",
+    "eslint-plugin-deslop": "0.3.6",
+    "eslint-plugin-no-comment-slop": "0.6.0",
+    "eslint-plugin-no-commented-code": "1.0.10",
+    "eslint-plugin-slop": "0.1.3",
+    "eslint-plugin-sonarjs": "4.2.2",
+    "postcss-html": "2.0.0",
+    "stylelint-config-standard": "41.0.0",
+    "stylelint-order": "8.1.3"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "21.2.4",
+    "@commitlint/config-conventional": "21.2.4",
+    "@commitlint/types": "21.2.3",
+    "@oxlint/plugins": "1.93.0",
+    "@secretlint/secretlint-rule-preset-recommend": "13.1.0",
+    "@types/node": "26.6.6",
+    "knip": "6.45.1",
+    "lefthook": "2.2.2",
+    "oxfmt": "0.78.0",
+    "oxlint": "1.93.0",
+    "oxlint-tsgolint": "7.0.2006",
+    "secretlint": "13.1.0",
+    "stylelint": "18.0.0",
+    "typescript": "7.0.2",
+    "vitest": "5.1.0"
+  },
+  "peerDependencies": {
+    "knip": "^6.45.1",
+    "oxfmt": "^0.78.0",
+    "oxlint": "^1.93.0",
+    "oxlint-tsgolint": ">=7.0.2006",
+    "stylelint": "^18.0.0",
+    "typescript": "^7.0.2"
+  },
+  "peerDependenciesMeta": {
+    "knip": {
+      "optional": true
+    },
+    "oxfmt": {
+      "optional": true
+    },
+    "oxlint": {
+      "optional": true
+    },
+    "stylelint": {
+      "optional": true
+    },
+    "typescript": {
+      "optional": true
+    }
+  },
+  "engines": {
+    "node": ">=26.12.1"
+  },
+  "packageManager": "pnpm@12.18.0"
+}
