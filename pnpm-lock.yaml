@@ -173,8 +173,8 @@ importers:
         specifier: 0.3.6
         version: 0.3.6(eslint@10.14.0(jiti@2.7.0)(supports-color@7.2.0))
       eslint-plugin-no-comment-slop:
-        specifier: 0.6.0
-        version: 0.6.0
+        specifier: 0.6.1
+        version: 0.6.1
       eslint-plugin-no-commented-code:
         specifier: 1.0.10
         version: 1.0.10
@@ -1807,8 +1807,8 @@ packages:
     peerDependencies:
       eslint: '>=8.0.0'
 
-  eslint-plugin-no-comment-slop@0.6.0:
-    resolution: {integrity: sha512-mDeRlOB6t3K+ZZjTdjDjSp5HjR145L6MiDeTqglWCZ1n1bhIAjQEZX9YSrSyASKfN16+dt7YXcMZR8i8KJak9g==}
+  eslint-plugin-no-comment-slop@0.6.1:
+    resolution: {integrity: sha512-SE09TsCq//y7ZVJCrCrI+bS+SrkyK/9hsdUGUTFKl58ggGDrc6AyK+bNLlJ8Xfj34gHmBoi2BWCU/8pS4WBwCQ==}
     engines: {node: '>=24'}
     hasBin: true
 
@@ -4672,7 +4672,7 @@ snapshots:
     dependencies:
       eslint: 10.14.0(jiti@2.7.0)(supports-color@7.2.0)
 
-  eslint-plugin-no-comment-slop@0.6.0: {}
+  eslint-plugin-no-comment-slop@0.6.1: {}
 
   eslint-plugin-no-commented-code@1.0.10: {}
 
